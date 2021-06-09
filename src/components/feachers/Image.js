@@ -1,13 +1,16 @@
-import axios from 'axios'
+import firebase from 'firebase'
 
 function Image({ status, refetch, setRefetch, setSelectedStatus, isPartnerStatus }){
     const deleteStatus = id => {
-        axios.delete(`https://shielded-sea-23165.herokuapp.com/api/v1/statuses/${id}`)
-         .then(res => {
-             setRefetch(!refetch)
-             setSelectedStatus({})
+        const statusesRef = firebase.database().ref('Statuses').child(id);
+        statusesRef.remove()
+         .then(() => {
+            setRefetch(!refetch)
+            setSelectedStatus({})
          })
-         .catch(err => console.log(err))
+         .catch(err => {
+            console.log(err)
+         })
     }
 
     return (
@@ -28,7 +31,7 @@ function Image({ status, refetch, setRefetch, setSelectedStatus, isPartnerStatus
            {!isPartnerStatus && (
                <button 
                     className="bg-red-500 py-1 px-2 text-sm text-white rounded mt-2"
-                    onClick={() => deleteStatus(status._id)}
+                    onClick={() => deleteStatus(status.id)}
                 >
                     Delete Status
                 </button>

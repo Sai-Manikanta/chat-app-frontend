@@ -1,9 +1,8 @@
 import { useContext, useState, useEffect } from 'react'
-import axios from 'axios'
-import Pusher from 'pusher-js';
 import { AuthContext } from '../../contexts/AuthContext'
 import getTime from '../../utils/time'
 import RenderStatus from './RenderStatus'
+import firebase from 'firebase'
 
 function PartnerStatus() {
     const { name } = useContext(AuthContext);
@@ -12,36 +11,28 @@ function PartnerStatus() {
     const [selectedStatus, setSelectedStatus] = useState({});
 
     useEffect(() => {
-        axios.get('https://shielded-sea-23165.herokuapp.com/api/v1/statuses')
-         .then(res => setStatuses(res.data.data))
-         .catch(err => console.log(err.message))
-    },[setStatuses])
+        const statusesRef = firebase.database().ref('Statuses');
 
-    useEffect(() => {
-        var pusher = new Pusher('75838d36413b7d5761a0', {
-            cluster: 'ap2'
-        });
-      
-        var channel = pusher.subscribe('status');
-        channel.bind('newstatus', function(data) {
-            setStatuses([...statuses, { ...data }]);
-        });
-
-        return () => {
-            channel.unbind_all();
-            channel.unsubscribe();
-        }
-    }, [statuses])
+        statusesRef.on('value', (snapshot) => {
+            const statuses = snapshot.val();
+            const statusesList = [];
+            for(let id in statuses){
+                statusesList.push({ id, ...statuses[id]});
+            }
+            setStatuses(statusesList)
+        })
+    }, [])
 
     const updateToSeenStatus = (id, seenByPartner) => {
         if(seenByPartner) return null
 
-        axios.patch(`https://shielded-sea-23165.herokuapp.com/api/v1/statuses/${id}`, {
+        const statusesRef = firebase.database().ref('Statuses').child(id);
+        statusesRef.update({
             seenByPartner: true,
             seenByPartnerTime: getTime()
         })
-        .then(res => {})
-        .catch(err => console.log(err.message))
+        .then(() => {})
+        .catch(err => console.log(err))
     }
     
     return (
@@ -52,18 +43,18 @@ function PartnerStatus() {
             <div className="flex justify-between space-x-2">
                 {statuses.filter(s => s.name !== name).map((status, index) => (
                     <button 
-                        key={status._id}
-                        className={`${ status._id === selectedStatus._id ? 'bg-indigo-500' : 'bg-indigo-300' } flex-grow text-center rounded-lg text-white focus:outline-none`}
+                        key={status.id}
+                        className={`${ status.id === selectedStatus.id ? 'bg-indigo-500' : 'bg-indigo-300' } flex-grow text-center rounded-lg text-white focus:outline-none`}
                         onClick={() => {
                             setSelectedStatus(status)
-                            updateToSeenStatus(status._id, status.seenByPartner)
+                            updateToSeenStatus(status.id, status.seenByPartner)
                         }}
                     >
                         { index + 1 }
                     </button>
                 ))}
             </div>
-            { selectedStatus._id && (
+            { selectedStatus.id && (
                 <div className="mt-4">
                     <RenderStatus 
                         status={selectedStatus} 

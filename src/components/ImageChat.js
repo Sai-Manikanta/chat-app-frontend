@@ -11,8 +11,8 @@ function ImageChat({ chat }) {
                 <IKImage
                     path={chat.src}
                     transformation={[{
-                        "height": "240",
-                        //"width": "240"
+                        //"height": "240",
+                        "width": "240"
                     }]}
                     loading="lazy"
                     lqip={{ active: true }}
