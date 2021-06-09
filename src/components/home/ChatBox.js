@@ -1,52 +1,12 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useContext, useRef } from 'react';
 import { IKContext } from 'imagekitio-react';
-import axios from 'axios';
-import Pusher from 'pusher-js';
 import Chat from '../Chat';
+import { ChatContext } from '../../contexts/ChatContext'
 
 function ChatBox() {
-    const [chats, setChats] = useState([]);
+    const { chats } = useContext(ChatContext);
 
     const scrollDiv = useRef();
-
-    useEffect(() => {
-        axios.get('https://shielded-sea-23165.herokuapp.com/api/v1/chats')
-          .then(res => setChats(res.data.data))
-          .catch(err => console.log(err.message))
-    }, [])
-
-    useEffect(() => {
-        var pusher = new Pusher('75838d36413b7d5761a0', {
-            cluster: 'ap2'
-        });
-      
-        var channel = pusher.subscribe('chat');
-        channel.bind('newchat', function(data) {
-            console.log(data);
-            setChats([...chats, { ...data }]);
-        });
-
-        return () => {
-            channel.unbind_all();
-            channel.unsubscribe();
-        }
-    }, [chats])
-
-    useEffect(() => {
-        var pusher = new Pusher('75838d36413b7d5761a0', {
-            cluster: 'ap2'
-        });
-      
-        var channel = pusher.subscribe('chat');
-        channel.bind('deletedchats', function(data) {
-            setChats([]);
-        });
-
-        return () => {
-            channel.unbind();
-            channel.unsubscribe();
-        }
-    }, [chats])
 
     useEffect(() => {
         scrollDiv.current?.scrollIntoView({behavior: "smooth"})
