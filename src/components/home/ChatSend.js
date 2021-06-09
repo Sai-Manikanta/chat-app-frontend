@@ -25,6 +25,8 @@ function ChatSend() {
 
         const chatRef = firebase.database().ref('Chats');
         chatRef.push({ name, type: "text", text, time: getTime() })
+         .then(res => {})
+         .catch(err => console.log(err))
 
         axios.post('https://shielded-sea-23165.herokuapp.com/api/v1/typing', {
             name: name,

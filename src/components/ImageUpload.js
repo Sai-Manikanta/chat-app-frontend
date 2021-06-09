@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { IKContext, IKUpload } from 'imagekitio-react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 import fileExtension from 'file-extension'; 
 import { AuthContext } from '../contexts/AuthContext';
 import { UploadContext } from '../contexts/UploadContext';
+import firebase from '../utils/firebase'
+import getTime from '../utils/time';
 
 function ImageUpload() {
     const { name } = useContext(AuthContext)
@@ -24,41 +25,30 @@ function ImageUpload() {
     };
     
     const onSuccess = res => {
-        console.log(res);
-        
         if(res.fileType === 'image'){
-            axios.post('https://shielded-sea-23165.herokuapp.com/api/v1/chats', {
-                    name,
-                    type: "image",
-                    src: res.filePath,
-                    time: '10:00 AM'
-            })
-            .then(res => {
-                console.log(res.data);
+            const chatRef = firebase.database().ref('Chats');
+            chatRef.push({ name, type: "image", src: res.filePath, time: getTime() })
+             .then(res => {
                 setUploadStatus(false);
-            })
-            .catch(err => {
-                console.log(err.message);
+             })
+             .catch(err => {
                 setUploadStatus(false);
-            })
+                console.log(err);
+             })
+
         } else {
             const videoExtention = fileExtension(res.filePath);
             const allowedExtentions = ['mp4', 'mov'];
             const allowedOrNot = allowedExtentions.includes(videoExtention); // boolean
             if(allowedOrNot){
-                axios.post('https://shielded-sea-23165.herokuapp.com/api/v1/chats', {
-                    name,
-                    type: "video",
-                    src: res.filePath,
-                    time: '10:00 AM'
-                })
+                const chatRef = firebase.database().ref('Chats');
+                chatRef.push({ name, type: "video", src: res.filePath, time: getTime() })
                 .then(res => {
-                    console.log(res.data);
                     setUploadStatus(false);
                 })
                 .catch(err => {
-                    console.log(err.message);
                     setUploadStatus(false);
+                    console.log(err);
                 })
             }
         }

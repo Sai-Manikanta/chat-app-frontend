@@ -1,7 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
 import firebase from '../utils/firebase'
-//import axios from 'axios'
-//import Pusher from 'pusher-js';
 
 export const ChatContext = createContext();
 
