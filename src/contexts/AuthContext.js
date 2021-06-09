@@ -4,9 +4,8 @@ export const AuthContext = createContext();
 
 function AuthContextProvider({ children }) {
     const [loginDetails, setLoginDetails] = useState({
-        name: "Mani",
-        lastLogin: "2:30am",
-        isLogin: true
+        name: null,
+        isLogin: false
     });
 
     return (
