@@ -7,6 +7,7 @@ import getTime from '../../utils/time'
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { AuthContext } from '../../contexts/AuthContext';
 import { UploadContext } from '../../contexts/UploadContext';
+import firebase from '../../utils/firebase';
 
 function ChatSend() {
     const { name } = useContext(AuthContext);
@@ -21,14 +22,9 @@ function ChatSend() {
         if(!text){
             return null
         }
-        
-        axios.post('https://shielded-sea-23165.herokuapp.com/api/v1/chats', {
-            name,
-            type: "text",
-            text,
-            time: getTime()
-        }).then(res => {})
-          .catch(err => console.log(err.message))
+
+        const chatRef = firebase.database().ref('Chats');
+        chatRef.push({ name, type: "text", text, time: getTime() })
 
         axios.post('https://shielded-sea-23165.herokuapp.com/api/v1/typing', {
             name: name,

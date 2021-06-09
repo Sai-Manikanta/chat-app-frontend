@@ -18,7 +18,7 @@ function ChatBox() {
                 {(chats.length > 0) ? (
                     <IKContext urlEndpoint="https://ik.imagekit.io/42vct06fb">
                             {chats.map(chat => (
-                                <div key={chat._id} ref={scrollDiv}>
+                                <div key={chat.id} ref={scrollDiv}>
                                     <Chat chat={chat} />
                                 </div>
                             ))}

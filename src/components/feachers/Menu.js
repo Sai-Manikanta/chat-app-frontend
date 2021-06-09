@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { MdNotificationsActive, MdDeleteSweep } from 'react-icons/md'
 import { ToastContainer, toast } from 'react-toastify';
+import firebase from '../../utils/firebase';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Menu() {
@@ -22,13 +23,10 @@ function Menu() {
     }
 
     const deleteChat = () => {
-        axios.delete('https://shielded-sea-23165.herokuapp.com/api/v1/chats')
-         .then(res => {
-            deleteSuccess()
-         })
-         .catch(err => {
-            deleteFailed()
-         })
+      const chatRef = firebase.database().ref('Chats');
+      chatRef.remove()
+       .then(() => deleteSuccess())
+       .catch(() => deleteFailed())
     }
 
     return (
