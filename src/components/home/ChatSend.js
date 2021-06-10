@@ -1,8 +1,8 @@
 import { useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { BiPaperPlane } from "react-icons/bi";
 import { MdPermMedia } from "react-icons/md";
-import axios from 'axios';
 import getTime from '../../utils/time'
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -28,28 +28,41 @@ function ChatSend() {
          .then(res => {})
          .catch(err => console.log(err))
 
-        axios.post('https://shielded-sea-23165.herokuapp.com/api/v1/typing', {
-            name: name,
+        const typerDocId = name === 'Mani' ? '-Mbo8Klzoo2a5cPA8Ht2' : '-Mbo8RyucsohBdWd440U';
+        const typingDocRef = firebase.database().ref('Typing').child(typerDocId);
+        typingDocRef.update({
             typing: false,
             length: 0
         })
-        .then(res => {})
-        .catch(err => console.log(err.message))
+        .then(() => {})
+        .catch(err => console.log(err))
 
         chatInputRef.current.value = '';
     }
 
     const handleTypingChat = e => {
+        const typerDocId = name === 'Mani' ? '-Mbo8Klzoo2a5cPA8Ht2' : '-Mbo8RyucsohBdWd440U';
         const length = e.target.value.length;
-        if((length % 5) === 0 || length === 1){
-            axios.post('https://shielded-sea-23165.herokuapp.com/api/v1/typing', {
-                name,
+        if((length % 10) === 0 || length === 1){
+            const typingDocRef = firebase.database().ref('Typing').child(typerDocId);
+            typingDocRef.update({
                 typing: true,
                 length
             })
-            .then(res => {})
-            .catch(err => console.log(err.message))
+            .then(() => {})
+            .catch(err => console.log(err))
         }
+    }
+
+    const handleChatBlur = () => {
+        const typerDocId = name === 'Mani' ? '-Mbo8Klzoo2a5cPA8Ht2' : '-Mbo8RyucsohBdWd440U';
+        const typingDocRef = firebase.database().ref('Typing').child(typerDocId);
+        typingDocRef.update({
+            typing: false,
+            length: 0
+        })
+        .then(() => {})
+        .catch(err => console.log(err))
     }
 
     return (
@@ -72,10 +85,14 @@ function ChatSend() {
                     className="flex-grow outline-none text-gray-800"
                     ref={chatInputRef}
                     onChange={handleTypingChat}
+                    onBlur={handleChatBlur}
                 />
-                <button className="p-1.5 bg-blue-100 rounded">
+                <motion.button 
+                    className="p-1.5 bg-blue-100 rounded focus:outline-none"
+                    whileFocus={{ scale: 0.9 }}
+                >
                     <BiPaperPlane size="1.5em" className="text-blue-600" />
-                </button>
+                </motion.button>
             </form>
         </div>
     )

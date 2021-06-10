@@ -1,31 +1,27 @@
 import { useState, useEffect, useContext } from 'react'
-import Pusher from 'pusher-js';
 import { useHistory } from 'react-router-dom'
 import { CgMenuRightAlt } from "react-icons/cg"
 import { AuthContext } from '../../contexts/AuthContext'
+import firebase from '../../utils/firebase'
 
 function Header() {
     const [typing, setTyping] = useState({});
     const { name } = useContext(AuthContext);
-    const typer = name === 'Mani' ? 'Chinnu' : 'Mani';
     const history = useHistory();
 
     useEffect(() => {
-        var pusher = new Pusher('75838d36413b7d5761a0', {
-            cluster: 'ap2'
-        });
-      
-        var channel = pusher.subscribe('typing');
-        channel.bind(`${typer}Typing`, function(data) { // client-
-            setTyping(data);
-            //console.log(data)
-        });
+        const opoSiteTyperDocIndex = name === 'Mani' ? 1 : 0;
 
-        return () => {
-            channel.unbind();
-            channel.unsubscribe();
-        }
-    }, [typer]) // typing, 
+        const typingRef = firebase.database().ref('Typing'); // .child(opoSiteTyperDocId)
+        typingRef.on('value', (snapshot) => {
+            const typers = snapshot.val();
+            const typersList = [];
+            for(let id in typers){
+                typersList.push({ id, ...typers[id]});
+            }
+            setTyping(typersList[opoSiteTyperDocIndex])
+        })
+    }, []) 
 
     return (
         <div className="bg-indigo-500 flex px-3 py-2 items-center text-white justify-between flex-shrink-0">
