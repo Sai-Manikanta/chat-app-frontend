@@ -43,7 +43,7 @@ function ChatSend() {
     const handleTypingChat = e => {
         const typerDocId = name === 'Mani' ? '-Mbo8Klzoo2a5cPA8Ht2' : '-Mbo8RyucsohBdWd440U';
         const length = e.target.value.length;
-        if((length % 10) === 0 || length === 1){
+        if(length === 1){ // (length % 10) === 0 || 
             const typingDocRef = firebase.database().ref('Typing').child(typerDocId);
             typingDocRef.update({
                 typing: true,
