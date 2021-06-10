@@ -11,7 +11,6 @@ function Menu() {
 
     const deleteSuccess = () => toast.success("Successfully Cleared");
     const deleteFailed = () => toast.error("Failed...");
-
     const sendSms = () => {
         axios.get('https://shielded-sea-23165.herokuapp.com/api/v1/notify')
          .then(res => {

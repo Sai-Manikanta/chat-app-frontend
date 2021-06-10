@@ -28,5 +28,5 @@ function TextChat({ chat }) {
         </div>
     )
 }
-/// ${chat.name === 'Mani' ? 'text-indigo-500' : 'text-pink-500'}
+
 export default TextChat
