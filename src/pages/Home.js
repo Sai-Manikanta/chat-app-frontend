@@ -8,7 +8,6 @@ function Home() {
         <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
             className="h-screen flex flex-col max-w-lg mx-auto"
         >
             <Header />

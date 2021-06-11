@@ -16,12 +16,14 @@ function Video({ status, refetch, setRefetch, setSelectedStatus, isPartnerStatus
 
     return (
         <>
-          <ReactPlayer 
-            url={`https://ik.imagekit.io/42vct06fb${status.src}`} 
-            controls 
-            width="640"
-            height="360"
-          />
+          <div className="rounded-sm overflow-hidden">
+            <ReactPlayer 
+                url={`https://ik.imagekit.io/42vct06fb${status.src}`} 
+                controls 
+                width="640"
+                height="360"
+            />
+          </div>
           <p className="mt-2 text-sm">
               Uploaded at {status.time}
           </p>

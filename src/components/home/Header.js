@@ -24,15 +24,15 @@ function Header() {
     }, []) 
 
     return (
-        <div className="bg-indigo-500  flex px-3 py-3 items-center text-white justify-between flex-shrink-0 border-white shadow">
+        <div className={`bg-white dark:bg-gray-800 ${name === 'Mani' ? 'text-indigo-500' : 'text-pink-500'} tracking-wide dark:text-white  flex px-3 py-3 items-center justify-between flex-shrink-0 shadow-xl`}>
             {typing.typing && (
                 <div>{`${typing.name} is typing...`}</div>
             )}
             {!typing.typing && (
-                <div>Welcome</div>
+                <div className="font-bold">Welcome bey</div>
             )}
             <button onClick={() => history.push('/feachers/menu')}>
-                <CgMenuRightAlt size="2em" />
+                <CgMenuRightAlt size="2em" className={`${name === 'Mani' ? 'text-indigo-500' : 'text-pink-500'} dark:text-white`} />
             </button>
         </div>
     )

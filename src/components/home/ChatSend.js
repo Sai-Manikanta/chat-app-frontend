@@ -2,7 +2,7 @@ import { useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BiPaperPlane } from "react-icons/bi";
-import { MdPermMedia } from "react-icons/md";
+import { MdFileUpload } from "react-icons/md";
 import getTime from '../../utils/time'
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -43,7 +43,7 @@ function ChatSend() {
     const handleTypingChat = e => {
         const typerDocId = name === 'Mani' ? '-Mbo8Klzoo2a5cPA8Ht2' : '-Mbo8RyucsohBdWd440U';
         const length = e.target.value.length;
-        if(length === 1){ // (length % 10) === 0 || 
+        if(length === 1){  
             const typingDocRef = firebase.database().ref('Typing').child(typerDocId);
             typingDocRef.update({
                 typing: true,
@@ -66,34 +66,36 @@ function ChatSend() {
     }
 
     return (
-        <div className="flex items-center py-2 px-2 flex-shrink-0">
+        <div className="py-4 px-3 bg-gray-50 dark:bg-gray-800">
+            <div className="flex items-center py-1 px-1.5 flex-shrink-0 bg-white rounded-full shadow">
 
-            { uploadStatus ? (
-                    <div className="ml-1 mr-4">
-                       <CgSpinnerTwo size="1.5em" className="text-blue-600 animate-spin" /> 
-                    </div>
-            ) : (
-                    <Link to="/feachers/image-upload" className="ml-1 mr-4">
-                        <MdPermMedia size="1.5em" className="text-blue-600" />
-                    </Link> 
-            ) }
+                { uploadStatus ? (
+                        <div className="ml-1 mr-4">
+                            <CgSpinnerTwo size="1.5em" className="text-blue-600 animate-spin" /> 
+                        </div>
+                ) : (
+                        <Link to="/feachers/image-upload" className="ml-1 mr-4">
+                            <MdFileUpload size="1.3em" className="text-blue-600" />
+                        </Link> 
+                ) }
 
-            <form onSubmit={handleSumbit} className="flex flex-grow"> 
-                <input 
-                    type="text" 
-                    placeholder="Type your message..." 
-                    className="flex-grow outline-none text-gray-800"
-                    ref={chatInputRef}
-                    onChange={handleTypingChat}
-                    onBlur={handleChatBlur}
-                />
-                <motion.button 
-                    className="p-1.5 bg-blue-100 rounded focus:outline-none"
-                    whileFocus={{ scale: 0.9 }}
-                >
-                    <BiPaperPlane size="1.5em" className="text-blue-600" />
-                </motion.button>
-            </form>
+                <form onSubmit={handleSumbit} className="flex flex-grow"> 
+                    <input 
+                        type="text" 
+                        placeholder="Type your message..." 
+                        className={`flex-grow outline-none ${name === 'Mani' ? 'text-indigo-500' : 'text-pink-500'}`}
+                        ref={chatInputRef}
+                        onChange={handleTypingChat}
+                        onBlur={handleChatBlur}
+                    />
+                    <motion.button 
+                        className="p-1.5 bg-blue-100 rounded-full focus:outline-none"
+                        whileFocus={{ scale: 0.9 }}
+                    >
+                        <BiPaperPlane size="1.5em" className="text-blue-600" />
+                    </motion.button>
+                </form>
+            </div>
         </div>
     )
 }

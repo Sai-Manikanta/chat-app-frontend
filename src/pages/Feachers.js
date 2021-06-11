@@ -33,14 +33,14 @@ function Feachers() {
                   <NavLink 
                     to={`${url}/menu`} 
                     className="bg-white flex-grow text-center py-1.5 rounded text-sm border-b-4" 
-                    activeClassName="border-b-4 border-indigo-500 text-indigo-500"
+                    activeClassName="border-b-4 border-indigo-300 text-indigo-500"
                   >
                       Menu
                   </NavLink>
                   <NavLink 
                     to={`${url}/status/yours`} 
                     className="bg-white flex-grow text-center py-1.5 rounded text-sm border-b-4" 
-                    activeClassName="border-b-4 border-indigo-500 text-indigo-500">
+                    activeClassName="border-b-4 border-indigo-300 text-indigo-500">
                       Status
                   </NavLink> 
                 </div>

@@ -6,8 +6,8 @@ function VideoChat({ chat }) {
     const { name } = useContext(AuthContext);
     
     return (
-        <div className={`flex ${chat.name === name ? 'justify-end' : ''} ${chat.name === name ? 'pl-16' : ''} ${chat.name !== name ? 'pr-16' : ''} mb-4`}>
-            <span className={`p-1 ${chat.name === 'Mani' && 'bg-indigo-300'} ${chat.name === 'Chinnu' && 'bg-pink-300'} rounded`}>
+        <div className={`flex ${chat.name === name ? 'justify-end' : ''} ${chat.name === name ? 'pl-10' : 'pr-10'} mb-4`}>
+            <span className={`rounded p-1 ${chat.name === 'Mani' ? 'bg-indigo-300' : 'bg-pink-300'} overflow-hidden shadow`}>
                 <ReactPlayer 
                     url={`https://ik.imagekit.io/42vct06fb${chat.src}`} 
                     controls 
@@ -18,5 +18,5 @@ function VideoChat({ chat }) {
         </div>
     )
 }
-
+/// ${chat.name === 'Mani' && 'bg-indigo-300'} ${chat.name === 'Chinnu' && 'bg-pink-300'} 
 export default VideoChat

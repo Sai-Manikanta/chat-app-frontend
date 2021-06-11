@@ -6,20 +6,21 @@ function ImageChat({ chat }) {
     const { name } = useContext(AuthContext);
 
     return (
-        <div className={`flex ${chat.name === name ? 'justify-end' : ''} ${chat.name === name ? 'pl-16' : ''} ${chat.name !== name ? 'pr-16' : ''} mb-4`}>
-            <span className={`p-1 ${chat.name === 'Mani' && 'bg-indigo-300'} ${chat.name === 'Chinnu' && 'bg-pink-300'} rounded`}>
+        <div className={`flex ${chat.name === name && 'justify-end'} mb-4`}>
+            <span className={`rounded p-1 ${chat.name === 'Mani' ? 'bg-indigo-300' : 'bg-pink-300'} overflow-hidden shadow`}>
                 <IKImage
                     path={chat.src}
                     transformation={[{
                         //"height": "240",
-                        "width": "240"
+                        "width": "246"
                     }]}
                     loading="lazy"
                     lqip={{ active: true }}
+                    className="rounded-sm"
                 />
             </span>
         </div>
     )
 }
-
+// ${chat.name === 'Mani' && 'bg-indigo-300'} ${chat.name === 'Chinnu' && 'bg-pink-300'} 
 export default ImageChat

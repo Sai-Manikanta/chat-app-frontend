@@ -91,7 +91,7 @@ function YourStatus() {
                    {statuses.filter(s => s.name === name).map((status, index) => (
                        <button 
                           key={status.id}
-                          className={`${ status.id === selectedStatus.id ? 'bg-indigo-500' : 'bg-indigo-300' } flex-grow text-center rounded-lg text-white focus:outline-none`}
+                          className={`${ status.id === selectedStatus.id ? 'bg-gradient-to-r from-green-400 to-blue-500' : 'bg-pink-300' } flex-grow text-center rounded-lg text-white focus:outline-none`}
                           onClick={() => setSelectedStatus(status)}
                         >
                            { index + 1 }

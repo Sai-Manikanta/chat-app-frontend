@@ -9,18 +9,18 @@ function Status() {
     const { url, path } = useRouteMatch();
 
     return (
-        <div className="text-gray-600">
+        <div>
             <div className="flex">
                 <NavLink 
                     to={`${url}/yours`}
-                    activeClassName="bg-indigo-400 text-white"
+                    activeClassName="bg-gradient-to-r from-green-400 to-blue-500 text-white"
                     className="border flex-grow text-center py-2 text-sm rounded-l border-r-0 bg-white"
                 >
                     Your Status
                 </NavLink>
                 <NavLink 
                     to={`${url}/${name}`}
-                    activeClassName="bg-indigo-400 text-white"
+                    activeClassName="bg-gradient-to-r from-green-400 to-blue-500 text-white"
                     className="border flex-grow text-center py-2 text-sm rounded-r bg-white"
                 >
                     {(name === 'Mani') ? 'Chinnu' : 'Mani'} Status
