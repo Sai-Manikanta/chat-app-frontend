@@ -24,7 +24,7 @@ function Header() {
     }, []) 
 
     return (
-        <div className="bg-indigo-500 flex px-3 py-2 items-center text-white justify-between flex-shrink-0">
+        <div className="bg-indigo-500  flex px-3 py-3 items-center text-white justify-between flex-shrink-0 border-white shadow">
             {typing.typing && (
                 <div>{`${typing.name} is typing...`}</div>
             )}

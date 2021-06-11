@@ -14,20 +14,20 @@ function Status() {
                 <NavLink 
                     to={`${url}/yours`}
                     activeClassName="bg-indigo-400 text-white"
-                    className="border flex-grow text-center py-2 text-sm rounded-l border-r-0 bg-indigo-100"
+                    className="border flex-grow text-center py-2 text-sm rounded-l border-r-0 bg-white"
                 >
                     Your Status
                 </NavLink>
                 <NavLink 
                     to={`${url}/${name}`}
                     activeClassName="bg-indigo-400 text-white"
-                    className="border flex-grow text-center py-2 text-sm rounded-r bg-indigo-100"
+                    className="border flex-grow text-center py-2 text-sm rounded-r bg-white"
                 >
                     {(name === 'Mani') ? 'Chinnu' : 'Mani'} Status
                 </NavLink>
             </div>
 
-            <div className="shadow mt-4 p-4 rounded">
+            <div className="shadow bg-white mt-4 p-4 rounded">
                 <Switch>
                     <Route path={`${path}/yours`}>
                         <YourStatus />

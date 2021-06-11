@@ -10,7 +10,7 @@ function Feachers() {
     const { url, path } = useRouteMatch();
 
     return (
-        <div className=" h-screen text-gray-800"> 
+        <div className="bg-indigo-100 dark:bg-gray-800 h-screen text-gray-800"> 
         {/* style={{ backgroundColor: '#23285C' }} */}
             <div 
                 style={{ backgroundColor: '#E9467C' }}
