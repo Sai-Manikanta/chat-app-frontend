@@ -21,10 +21,10 @@ function Header() {
             }
             setTyping(typersList[opoSiteTyperDocIndex])
         })
-    }, []) 
+    }, [name]) 
 
     return (
-        <div className={`bg-white dark:bg-gray-800 ${name === 'Mani' ? 'text-indigo-500' : 'text-pink-500'} tracking-wide dark:text-white  flex px-3 py-3 items-center justify-between flex-shrink-0 shadow-xl`}>
+        <div className={`bg-white dark:bg-gray-800 ${name === 'Mani' ? 'text-indigo-500' : 'text-pink-500'} tracking-wide dark:text-white  flex px-3 py-3 items-center justify-between flex-shrink-0 shadow`}>
             {typing.typing && (
                 <div>{`${typing.name} is typing...`}</div>
             )}

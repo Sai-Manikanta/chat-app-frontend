@@ -22,5 +22,5 @@ function ImageChat({ chat }) {
         </div>
     )
 }
-// ${chat.name === 'Mani' && 'bg-indigo-300'} ${chat.name === 'Chinnu' && 'bg-pink-300'} 
+
 export default ImageChat

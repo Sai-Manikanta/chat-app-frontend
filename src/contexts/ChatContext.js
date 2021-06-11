@@ -6,6 +6,8 @@ export const ChatContext = createContext();
 function ChatContextProvider({ children }) {
     const [chats, setChats] = useState([]);
 
+    console.log(chats);
+
     useEffect(() => {
         const chatRef = firebase.database().ref('Chats');
 

@@ -6,6 +6,7 @@ import { AuthContext } from '../contexts/AuthContext';
 import { UploadContext } from '../contexts/UploadContext';
 import firebase from '../utils/firebase'
 import getTime from '../utils/time';
+import TenorGifs from './TenorGifs';
 
 function ImageUpload() {
     const { name } = useContext(AuthContext)
@@ -68,6 +69,7 @@ function ImageUpload() {
                     onChange={handleChange}
                 />
             </IKContext>
+            <TenorGifs />
         </div>
     )
 }
