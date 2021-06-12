@@ -41,7 +41,7 @@ function Menu() {
             whileTap={{ scale: 1.5 }}
             className="flex items-center py-2 pl-4 w-44 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 text-white rounded-full focus:outline-none shadow border-2 border-white"
             onClick={sendSms}
-            styles={{ cursor: none }}
+            styles={{ cursor: "none" }}
          >
             <MdNotificationsActive size="1.5em" className="mr-2" />
             Notify bey...
@@ -50,7 +50,7 @@ function Menu() {
             whileTap={{ scale: 1.5 }}
             className="flex items-center py-2 pl-4 w-44 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white rounded-full focus:outline-none shadow border-2 border-white mt-3"
             onClick={deleteChat}
-            styles={{ cursor: none }}
+            styles={{ cursor: "none" }}
          >
             <MdDeleteSweep size="1.5em" className="mr-2" />
             Clear Chat
@@ -59,7 +59,7 @@ function Menu() {
             whileTap={{ scale: 1.5 }}
             className="flex items-center py-2 pl-4 w-44 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white rounded-full shadow border-2 border-white mt-3 focus:outline-none"
             onClick={() => setIsDarkTheme(!isDarkTheme)}
-            styles={{ cursor: none }}
+            styles={{ cursor: "none" }}
          >
             {isDarkTheme ? <FiSun size="1.5em" className="mr-2" /> : <FaRegMoon size="1.5em" className="mr-2" />}
             {isDarkTheme ? 'Set Light' : 'Set Dark'}
