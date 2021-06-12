@@ -71,11 +71,11 @@ function ChatSend() {
 
                 { uploadStatus ? (
                         <div className="ml-1 mr-4">
-                            <CgSpinnerTwo size="1.5em" className="text-blue-600 animate-spin" /> 
+                            <CgSpinnerTwo size="1.5em" className={`${name === 'Mani' ? 'text-blue-600' : 'text-pink-500' } animate-spin`} /> 
                         </div>
                 ) : (
                         <Link to="/feachers/image-upload" className="ml-1 mr-4">
-                            <MdFileUpload size="1.3em" className="text-blue-600" />
+                            <MdFileUpload size="1.3em" className={`${name === 'Mani' ? 'text-blue-600' : 'text-pink-500'}`} />
                         </Link> 
                 ) }
 
@@ -83,16 +83,16 @@ function ChatSend() {
                     <input 
                         type="text" 
                         placeholder="Type your message..." 
-                        className={`flex-grow outline-none ${name === 'Mani' ? 'text-indigo-500' : 'text-pink-500'}`}
+                        className={`flex-grow outline-none ${name === 'Mani' ? 'text-blue-500' : 'text-pink-500'}`}
                         ref={chatInputRef}
                         onChange={handleTypingChat}
                         onBlur={handleChatBlur}
                     />
                     <motion.button 
-                        className="p-1.5 bg-blue-100 rounded-full focus:outline-none"
+                        className={`p-1.5 ${name === 'Mani' ? 'bg-blue-100' : 'bg-pink-100'} rounded-full focus:outline-none`}
                         whileFocus={{ scale: 0.9 }}
                     >
-                        <BiPaperPlane size="1.5em" className="text-blue-600" />
+                        <BiPaperPlane size="1.5em" className={`${name === 'Mani' ? 'text-blue-500' : 'text-pink-500'}`} />
                     </motion.button>
                 </form>
             </div>

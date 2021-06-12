@@ -17,16 +17,13 @@ function ChatBox() {
             className="bg-gray-50 dark:bg-gray-800 flex-grow p-3 flex-shrink overflow-y-auto scrollbar-hide bg-cover"
             style={{ backgroundImage: `url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png")` }}
         >
-                {/* all custom image component childrens accces parent context data */}
-                {(chats.length > 0) ? (
+                {(chats.length > 0) && (
                     <IKContext urlEndpoint="https://ik.imagekit.io/42vct06fb">
                             {chats.map(chat => (
                                 <Chat key={chat.id} chat={chat} />
                             ))} 
                             <div ref={scrollDiv}></div>
                     </IKContext>
-                ) : (
-                    <p>Welcome...</p>
                 )}
         </div>
     )
