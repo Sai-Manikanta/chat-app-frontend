@@ -34,7 +34,8 @@ function TenorGifs() {
             <Tenor 
                 autoFocus 
                 defaultResults 
-                token="LIVDSRZULELA" 
+                token="E9NHTTR579GC" 
+                limit={6}
                 searchPlaceholder="Gif search karo bey"
                 onSelect={handleGifSelect} 
             />

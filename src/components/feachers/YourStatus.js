@@ -83,6 +83,7 @@ function YourStatus() {
                         onError={onError}
                         onSuccess={onSuccess}
                         onChange={handleChange}
+                        folder="/chat"
                     />
                 </IKContext> 
            )}

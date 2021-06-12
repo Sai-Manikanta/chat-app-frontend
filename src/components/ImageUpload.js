@@ -67,6 +67,7 @@ function ImageUpload() {
                     onError={onError}
                     onSuccess={onSuccess}
                     onChange={handleChange}
+                    folder="/chat"
                 />
             </IKContext>
             <TenorGifs />
