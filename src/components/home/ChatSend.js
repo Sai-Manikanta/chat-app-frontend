@@ -71,11 +71,11 @@ function ChatSend() {
 
                 { uploadStatus ? (
                         <div className="ml-1 mr-4">
-                            <CgSpinnerTwo size="1.5em" className={`${name === 'Mani' ? 'text-blue-600' : 'text-pink-500' } animate-spin`} /> 
+                            <CgSpinnerTwo size="1.5em" className={`${name === 'Mani' ? 'text-blue-500' : 'text-pink-500' } animate-spin`} /> 
                         </div>
                 ) : (
                         <Link to="/feachers/image-upload" className="ml-1 mr-4">
-                            <MdFileUpload size="1.3em" className={`${name === 'Mani' ? 'text-blue-600' : 'text-pink-500'}`} />
+                            <MdFileUpload size="1.3em" className={`${name === 'Mani' ? 'text-blue-500' : 'text-pink-500'}`} />
                         </Link> 
                 ) }
 
