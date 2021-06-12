@@ -12,57 +12,60 @@ import 'react-toastify/dist/ReactToastify.css';
 function Menu() {
    const { isDarkTheme, setIsDarkTheme } = useContext(ThemeContext);
 
-    const smsSuccess = () => toast.success("Success...");
-    const smsFailed = () => toast.error("Failed...");
+   const smsSuccess = () => toast.success("Success...");
+   const smsFailed = () => toast.error("Failed...");
 
-    const deleteSuccess = () => toast.success("Successfully Cleared");
-    const deleteFailed = () => toast.error("Failed...");
-    const sendSms = () => {
-        axios.get('https://shielded-sea-23165.herokuapp.com/api/v1/notify')
+   const deleteSuccess = () => toast.success("Successfully Cleared");
+   const deleteFailed = () => toast.error("Failed...");
+   const sendSms = () => {
+      axios.get('https://shielded-sea-23165.herokuapp.com/api/v1/notify')
          .then(res => {
             smsSuccess()
          })
          .catch(err => {
             smsFailed()
          })
-    }
+   }
 
-    const deleteChat = () => {
+   const deleteChat = () => {
       const chatRef = firebase.database().ref('Chats');
       chatRef.remove()
-       .then(() => deleteSuccess())
-       .catch(() => deleteFailed())
-    }
+         .then(() => deleteSuccess())
+         .catch(() => deleteFailed())
+   }
 
-    return (
-        <div> 
-           <ToastContainer />
-           <motion.button 
-                whileTap={{ scale: 1.5 }}
-                className="flex items-center py-2 pl-4 w-44 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 text-white rounded-full focus:outline-none shadow border-2 border-white"
-                onClick={sendSms}
-            >
-               <MdNotificationsActive size="1.5em" className="mr-2" />
-               Notify bey... 
-            </motion.button>
-            <motion.button 
-                whileTap={{ scale: 1.5 }}
-                className="flex items-center py-2 pl-4 w-44 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white rounded-full focus:outline-none shadow border-2 border-white mt-3"
-                onClick={deleteChat}
-            >
-               <MdDeleteSweep size="1.5em" className="mr-2" />
-               Clear Chat 
-            </motion.button>
-            <motion.button 
-                whileTap={{ scale: 1.5 }}
-                className="flex items-center py-2 pl-4 w-44 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white rounded-full shadow border-2 border-white mt-3 focus:outline-none"
-                onClick={() => setIsDarkTheme(!isDarkTheme)}
-            >
-               {isDarkTheme ? <FiSun size="1.5em" className="mr-2" /> : <FaRegMoon size="1.5em" className="mr-2" /> }
-               {isDarkTheme ? 'Set Light' : 'Set Dark'}
-            </motion.button>
-        </div>
-    )
+   return (
+      <div>
+         <ToastContainer />
+         <motion.button
+            whileTap={{ scale: 1.5 }}
+            className="flex items-center py-2 pl-4 w-44 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 text-white rounded-full focus:outline-none shadow border-2 border-white"
+            onClick={sendSms}
+            styles={{ cursor: none }}
+         >
+            <MdNotificationsActive size="1.5em" className="mr-2" />
+            Notify bey...
+         </motion.button>
+         <motion.button
+            whileTap={{ scale: 1.5 }}
+            className="flex items-center py-2 pl-4 w-44 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white rounded-full focus:outline-none shadow border-2 border-white mt-3"
+            onClick={deleteChat}
+            styles={{ cursor: none }}
+         >
+            <MdDeleteSweep size="1.5em" className="mr-2" />
+            Clear Chat
+         </motion.button>
+         <motion.button
+            whileTap={{ scale: 1.5 }}
+            className="flex items-center py-2 pl-4 w-44 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white rounded-full shadow border-2 border-white mt-3 focus:outline-none"
+            onClick={() => setIsDarkTheme(!isDarkTheme)}
+            styles={{ cursor: none }}
+         >
+            {isDarkTheme ? <FiSun size="1.5em" className="mr-2" /> : <FaRegMoon size="1.5em" className="mr-2" />}
+            {isDarkTheme ? 'Set Light' : 'Set Dark'}
+         </motion.button>
+      </div>
+   )
 }
 
 export default Menu
