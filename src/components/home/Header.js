@@ -24,7 +24,7 @@ function Header() {
     }, [name]) 
 
     return (
-        <div className={`bg-white dark:bg-gray-800 ${name === 'Mani' ? 'text-blue-500' : 'text-pink-500'} tracking-wide dark:text-white  flex px-3 py-3 items-center justify-between flex-shrink-0 shadow`}>
+        <div className={`bg-white dark:bg-gray-800 ${name === 'Mani' ? 'text-blue-600' : 'text-pink-500'} tracking-wide dark:text-white  flex px-3 py-3 items-center justify-between flex-shrink-0 shadow`}>
             {typing.typing && (
                 <div>{`${typing.name} is typing...`}</div>
             )}
@@ -32,7 +32,7 @@ function Header() {
                 <div className="font-bold">Welcome bey</div>
             )}
             <button onClick={() => history.push('/feachers/menu')}>
-                <CgMenuRightAlt size="2em" className={`${name === 'Mani' ? 'text-blue-500' : 'text-pink-500'} dark:text-white`} />
+                <CgMenuRightAlt size="2em" className={`${name === 'Mani' ? 'text-blue-600' : 'text-pink-500'} dark:text-white`} />
             </button>
         </div>
     )
