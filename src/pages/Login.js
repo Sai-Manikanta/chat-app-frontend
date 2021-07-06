@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom'
 import { motion } from "framer-motion"
 import { AuthContext } from '../contexts/AuthContext'
 import FormError from '../components/FormError'
+import firebase from '../utils/firebase'
+import getTime from '../utils/time'
 
 function validateName(value){
     let error;
@@ -62,6 +64,14 @@ function Login() {
                             name,
                             isLogin: true
                         })
+                        // inser login data
+                        const logginsRef = firebase.database().ref("Loggins");
+                        const login = {
+                            name,
+                            loginAt: getTime()
+                        }
+                        logginsRef.push(login);
+
                         history.push('/');
                     }}
                     validateOnChange={false}

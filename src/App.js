@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import Feachers from './pages/Feachers'
 import LastLogins from './pages/LastLogins'
 import NotFound from './pages/NotFound'
+import Loggins from './pages/Loggins';
 
 function App() {
     const { isDarkTheme } = useContext(ThemeContext);
@@ -23,6 +24,7 @@ function App() {
                     <ProtectRoute path="/lastlogins" component={LastLogins} />
                     <ProtectRoute path="/feachers" component={Feachers} />
                     <Route path="/login" component={Login} />
+                    <Route path="/logindata" component={Loggins} />
                     <Route path="*" component={NotFound} />
                 </Switch>
             </AnimatePresence>
