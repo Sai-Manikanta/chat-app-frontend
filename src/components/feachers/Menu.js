@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import firebase from '../../utils/firebase';
 import { ThemeContext } from '../../contexts/ThemeContext'
 import 'react-toastify/dist/ReactToastify.css';
+import LinkBox from './LinkBox';
 
 function Menu() {
    const { isDarkTheme, setIsDarkTheme } = useContext(ThemeContext);
@@ -64,6 +65,9 @@ function Menu() {
             {isDarkTheme ? <FiSun size="1.5em" className="mr-2" /> : <FaRegMoon size="1.5em" className="mr-2" />}
             {isDarkTheme ? 'Set Light' : 'Set Dark'}
          </motion.button>
+
+         {/* Links Box */}
+         <LinkBox />
       </div>
    )
 }
