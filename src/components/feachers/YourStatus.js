@@ -41,7 +41,7 @@ function YourStatus() {
         if(res.fileType === 'image'){
 
             const statusesRef = firebase.database().ref('Statuses');
-            statusesRef.push({ name, type: 'image', src: res.filePath, text: '', time: getTime(), seenByPartner: false, seenByPartnerTime: '' })
+            statusesRef.push({ name, type: 'image', src: res.filePath, text: '', time: getTime(), seenByPartner: false, seenByPartnerTime: '', statusText: '' })
              .then(() => {
                 setRefetch(!refetch);
                 setUploadStatus(false);
@@ -57,7 +57,7 @@ function YourStatus() {
             const allowedOrNot = allowedExtentions.includes(videoExtention); // boolean
             if(allowedOrNot){
                 const statusesRef = firebase.database().ref('Statuses');
-                statusesRef.push({ name, type: 'video', src: res.filePath, text: '', time: getTime(), seenByPartner: false, seenByPartnerTime: '' })
+                statusesRef.push({ name, type: 'video', src: res.filePath, text: '', time: getTime(), seenByPartner: false, seenByPartnerTime: '', statusText: '' })
                  .then(() => {
                     setRefetch(!refetch);
                     setUploadStatus(false);
